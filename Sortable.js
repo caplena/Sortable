@@ -809,7 +809,8 @@
 					_cloneHide(activeSortable, isOwner);
 
 					if (_onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt) !== false) {
-						if (!dragEl.contains(el)) {
+						// Fix:https://github.com/RubaXa/Sortable/issues/1119
+						if (!dragEl.contains(el) && el.children.length === 0 || el.children.length === 1) {
 							el.appendChild(dragEl);
 							parentEl = el; // actualization
 						}
